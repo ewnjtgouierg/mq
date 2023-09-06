@@ -1,5 +1,8 @@
 var replyButton = Array.from(document.querySelectorAll('.mal-btn.primary.js-reply-start')).pop();
-var replyField = Array.from(document.querySelectorAll('.topic-reply-container')).pop().querySelector('textarea');
+console.log(replyButton);
+var replyContainer = Array.from(document.querySelectorAll('.topic-reply-container')).pop();
+console.log(replyContainer);
+var replyField = replyContainer.querySelector('textarea');
 
 for (var el of Array.from(document.querySelectorAll('.postActions')))
 	{
@@ -25,7 +28,12 @@ for (var el of Array.from(document.querySelectorAll('.postActions')))
 		button.addEventListener('click', function() {
 
 				replyField.value += this.code;
-				if (!replyField.offsetHeight) replyButton.click();
+				if (!replyField.offsetHeight)
+					{
+						replyContainer.className = replyContainer.className.replace(' hide', '');
+						replyContainer.style.display = 'initial';
+						replyButton.click();
+					}
 
 				replyField.focus();
 				replyField.setSelectionRange(replyField.value.length,replyField.value.length);
