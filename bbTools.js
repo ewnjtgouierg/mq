@@ -56,7 +56,7 @@ function bbCode(el, sub)
 
 				if (_tagName == 'br')
 					{
-						return "\n";
+						// return "\n";
 					}
 
 				if (_tagName == 'iframe' && el.className.match('youtube'))
@@ -71,6 +71,20 @@ function bbCode(el, sub)
 						return '[s]' + bbContent(el) + '[/s]';
 					}
 
+				if (el.getAttribute('style'))
+					{
+						var r = el.getAttribute('style').match(/^font-size: (\d+)%/);
+						if (r) return '[size=' + r[1] + ']' + bbContent(el) + '[/size]';
+
+						r = el.getAttribute('style').match(/^color: ([a-zA-Z]+)/);
+						if (r) return '[color=' + r[1] + ']' + bbContent(el) + '[/color]';
+
+						r = el.getAttribute('style').match(/^font-family: ([a-zA-Z]+)/);
+						if (r) return '[font=' + r[1] + ']' + bbContent(el) + '[/font]';
+					}
+
+				if (_tagName == 'tbody') return bbContent(el);
+
 				for (var tagName of ['strong', 'b', 'i', 'u', 'sub', 'sup', 'table', 'tr', 'td'])
 					if (_tagName === tagName)
 						{
@@ -81,6 +95,6 @@ function bbCode(el, sub)
 
 			}
 
-		console.log(el);
-		console.log(el.nodeType);
+		return "";
+
 	}
