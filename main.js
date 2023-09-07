@@ -13,21 +13,20 @@ for (var el of Array.from(document.querySelectorAll('.postActions')))
 
 		var msg = el.parentNode;
 
-		var userName = msg.parentNode.parentNode.getAttribute('data-user');
+		button.userName = msg.parentNode.parentNode.getAttribute('data-user');
 
 		var msgTable = msg.querySelector('table.body');
 
-		var msgIdPart = msgTable.id.replace('message', 'message=');
+		button.msgId = msgTable.id.replace('message', '');
 
-		var text = msgTable.querySelector('td').innerText;
-
-		button.code = '[quote='+userName+' '+msgIdPart+']' + text + '[/quote]' + "\n";
-
-		var buttonsContainer = el.querySelector('.mal-btn-group');
+		button.srcPost = msgTable.querySelector('td');
 
 		button.addEventListener('click', function() {
 
-				replyField.value += this.code;
+				var code = bbCode(this.srcPost);
+				code = bbQuote(code, this.userName, this.msgId);
+
+				replyField.value += code;
 				if (!replyField.offsetHeight)
 					{
 						replyContainer.className = replyContainer.className.replace(' hide', '');
@@ -40,5 +39,8 @@ for (var el of Array.from(document.querySelectorAll('.postActions')))
 
 			});
 
+		var buttonsContainer = el.querySelector('.mal-btn-group');
+
 		buttonsContainer.appendChild(button);
+
 	}
