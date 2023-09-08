@@ -28,7 +28,7 @@ function bbCode(el, sub)
 		if (el.nodeType == el.ELEMENT_NODE)
 			{
 
-				_tagName = el.tagName.toLowerCase();
+				var _tagName = el.tagName.toLowerCase();
 
 				if (el.className == 'quotetext')
 					{
