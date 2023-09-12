@@ -61,7 +61,7 @@ function bbCode(el, sub)
 
 				if (_tagName == 'iframe' && el.className.match('youtube'))
 					{
-						var r = el.src.match(/embed\/([a-zA-Z]+)/);
+						var r = el.src.match(/embed\/([-_a-zA-Z0-9]+)/);
 						var code = r[1];
 						return '[yt]' + code + '[/yt]';
 					}
