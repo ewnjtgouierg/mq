@@ -1,7 +1,7 @@
 {
     "name": "quote button for MAL",
     "description": "Restores quote button functionality that's been removed from MAL forums Sep 2023, icon CCBY by icons8 dot com",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "manifest_version": 3,
 	"icons": {
 		"16": "icon/16.png",
