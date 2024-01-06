@@ -2,7 +2,6 @@ var replyButton = Array.from(document.querySelectorAll('.mal-btn.primary.js-repl
 console.log(replyButton);
 var replyContainer = Array.from(document.querySelectorAll('.topic-reply-container')).pop();
 console.log(replyContainer);
-var replyField = replyContainer.querySelector('textarea');
 
 for (var el of Array.from(document.querySelectorAll('.postActions')))
 	{
@@ -25,6 +24,8 @@ for (var el of Array.from(document.querySelectorAll('.postActions')))
 
 				var code = bbCode(this.srcPost);
 				code = bbQuote(code, this.userName, this.msgId);
+
+				var replyField = replyContainer.querySelector('textarea');
 
 				replyField.value += code;
 				if (!replyField.offsetHeight)
