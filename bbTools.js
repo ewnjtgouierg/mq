@@ -32,8 +32,9 @@ function bbCode(el, sub)
 
 				if (el.className == 'quotetext')
 					{
-						return bbQuote(bbContent(el, 2),
-											el.getAttribute('data-user'), el.getAttribute('data-id'));
+						var user = el.getAttribute('data-user');
+						if (!user) return '[quote]'+bbContent(el)+'[/quote]';
+						return bbQuote(bbContent(el, 2), user, el.getAttribute('data-id'));
 					}
 
 				if (el.className == 'spoiler')
