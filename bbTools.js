@@ -85,6 +85,11 @@ function bbCode(el, sub)
 
 				if (_tagName == 'tbody') return bbContent(el);
 
+				if (_tagName === 'ul')
+					return '[list]' + bbContent(el) + '[/list]';
+
+				if (_tagName === 'li') return '[*]' + bbContent(el);
+
 				for (var tagName of ['strong', 'b', 'i', 'u', 'sub', 'sup', 'table', 'tr', 'td'])
 					if (_tagName === tagName)
 						{
