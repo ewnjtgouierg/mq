@@ -52,6 +52,7 @@ function bbCode(el, sub)
 
 				if (_tagName == 'img')
 					{
+						if (el.className == 'ext-emoji' && el.alt) return el.alt;
 						return '[img]'+el.src+'[/img]';
 					}
 
