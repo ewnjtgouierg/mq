@@ -53,7 +53,16 @@ function bbCode(el, sub)
 				if (_tagName == 'img')
 					{
 						if (el.className == 'ext-emoji' && el.alt) return el.alt;
-						return '[img]'+el.src+'[/img]';
+						var str = '[img';
+						for (var key of ['width', 'height'])
+							{
+								var val = el.style[key];
+								if (!val) continue;
+								val = Number(val.replace(/[^\d]/g, ''));
+								if (val) str += ' ' + key + '=' + val;
+							}
+						str += ']'+el.src+'[/img]'
+						return str;
 					}
 
 				if (_tagName == 'br')
